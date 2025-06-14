@@ -1,0 +1,83 @@
+<% layout('layouts/boilerplate') %>
+<!-- <h1> Enter the Details of the Camp: </h1> -->
+
+<div class="row">
+    <h1 class="text-center">New Campgrounds</h1>
+    <div class="col-6 offset-3">
+        <form action="/campgrounds" method="post" novalidate class="validation-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="title"><b>Title</b></label>
+                <input class="form-control" type="text" id="title" name="campground[title]" placeholder="Enter title here" required>    
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="location"><b>Enter Location:</b></label>
+                <input class="form-control" type="text" id="location" name="campground[location]" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+
+            <!-- <div class="mb-3">
+                <label class="form-label" for="image"> <b>Image Url</b></label>
+                <input class="form-control" type="text" id="location" name="campground[image]" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div> -->
+            <input type="file" class="form-control" id="image" name="image" multiple>
+            <div id="file-names-display" class="mt-2"></div>
+        
+             <script>
+                document.getElementById('image').addEventListener('change', function() {
+                    const files = this.files;
+                    const fileNamesDisplay = document.getElementById('file-names-display');
+                    fileNamesDisplay.innerHTML = '';
+        
+                    if (files.length > 0) {
+                        const fileList = document.createElement('ul');
+                        fileList.classList.add('list-unstyled');
+        
+                        for (const file of files) {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = file.name;
+                            fileList.appendChild(listItem);
+                        }
+        
+                        fileNamesDisplay.appendChild(fileList);
+                    }
+                });
+            </script>
+
+            <div class="mb-3">
+                <label class="form-label" for="price">Campground Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="campground[price]" required>    
+                </div>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="Description"> <b>Description</b></label>
+                <textarea class="form-control" type="text" id="location" name="campground[description]" required></textarea>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <button class="btn btn-success" type="submit"> Create Camp </button>
+            </div>
+        </form>
+        <a href="/campgrounds">All Campgrounds</a>
+    </div>
+</div>
+
+
