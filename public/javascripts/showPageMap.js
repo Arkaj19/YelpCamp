@@ -16,7 +16,3 @@ new maptilersdk.Marker()
             )
     )
     .addTo(map)
-
-
-
-    
